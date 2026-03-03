@@ -37,6 +37,10 @@ export async function updateSession(request: NextRequest) {
     data: { user },
   } = await supabase.auth.getUser()
 
+  // Rotas de API que não devem ser bloqueadas pelo middleware
+  // (elas lidam com autenticação internamente)
+  const isApiRoute = request.nextUrl.pathname.startsWith('/api/')
+
   // Rotas públicas que não requerem autenticação
   const publicRoutes = ['/', '/login', '/convite', '/cadastro']
   const isPublicRoute = publicRoutes.some(route => 
@@ -44,7 +48,8 @@ export async function updateSession(request: NextRequest) {
     request.nextUrl.pathname.startsWith(route + '/')
   )
 
-  if (!user && !isPublicRoute) {
+  // Não bloquear rotas de API nem rotas públicas
+  if (!user && !isPublicRoute && !isApiRoute) {
     // no user, potentially respond by redirecting the user to the login page
     const url = request.nextUrl.clone()
     url.pathname = '/login'
