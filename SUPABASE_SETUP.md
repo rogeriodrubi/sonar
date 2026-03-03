@@ -4,9 +4,9 @@ Este guia explica passo a passo como configurar o Supabase para o projeto Sonar.
 
 ## 📋 Pré-requisitos
 
-- Conta no [Supabase](https://supabase.com) (gratuita)
+- Conta no [Supabase](https://supabase.com) (gratuita) 
 - Node.js e npm instalados
-- Projeto Next.js já configurado (conforme `TASKS.md`)
+- Projeto Next.js já configurados (conforme `TASKS.md`)
 
 ---
 
